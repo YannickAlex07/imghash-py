@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "imghash"
+version = "0.1.0"
+description = "Image hashing powered by Rust"
+authors = ["Yannick Alexander <yannick@alexanderdev.io>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+maturin = "^1.5.1"
+pytest = "^8.2.0"
+ruff = "^0.4.2"
+
+[build-system]
+requires = ["maturin<=1.5.1"]
+build-backend = "maturin"
