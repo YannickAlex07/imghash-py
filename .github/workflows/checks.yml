@@ -1,0 +1,86 @@
+name: Checks
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v8
+
+      - name: Install Dependencies
+        run: poetry install
+
+      - name: Compile Bindings
+        run: poetry run maturin develop
+
+      - name: Run Tests
+        run: poetry run pytest tests/
+
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v8
+
+      - name: Install Dependencies
+        run: poetry install
+
+      - name: Run Ruff Linter
+        run: poetry run ruff check -v
+
+  format:
+    name: Formatting
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v8
+
+      - name: Install Dependencies
+        run: poetry install
+
+      - name: Run Ruff Linter
+        run: poetry run ruff format --check -v
