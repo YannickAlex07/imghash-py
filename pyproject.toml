@@ -1,14 +1,27 @@
 [project]
 name = "imghash"
 version = "0.1.0"
-description = "Image hashing powered by Rust"
+description = "Image hashing powered by Rust!"
 
-requires-python = ">=3.8,<3.13"
+requires-python = ">=3.9,<3.13"
 
-authors = [{ name = "Yannick Alexander", email = "yannick@alexanderdev.io" }]
-license = "MIT"
 readme = "README.md"
+authors = [{ name = "Yannick Alexander", email = "yannick@alexanderdev.io" }]
+license = { file = "LICENSE" }
 
+keywords = ["image", "hashing"]
+classifiers = [
+    "Intended Audience :: Developers",
+    # Python Versions
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+repository = "https://github.com/yannickalex07/imghash-py"
 
 [tool.rye]
 managed = true

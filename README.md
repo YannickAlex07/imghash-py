@@ -15,3 +15,5 @@ To get started add the package to your project:
 ```shell
 pip install imghash
 ```
+
+...
