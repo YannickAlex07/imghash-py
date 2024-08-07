@@ -22,7 +22,7 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Install the latest version of rye
+      - name: Install Rye
         uses: eifinger/setup-rye@v4
 
       - name: Pin Python Version
@@ -35,7 +35,7 @@ jobs:
         run: rye run maturin develop
 
       - name: Run Tests
-        run: rye run pytest tests/
+        run: rye run pytest -v tests/
 
   lint:
     name: Linting
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install the latest version of rye
+      - name: Install Rye
         uses: eifinger/setup-rye@v4
 
       - name: Pin Python Version
@@ -67,7 +67,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install the latest version of rye
+      - name: Install Rye
         uses: eifinger/setup-rye@v4
 
       - name: Pin Python Version

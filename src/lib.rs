@@ -1,4 +1,4 @@
-use pyo3::{exceptions::PyRuntimeError, prelude::*};
+use pyo3::{exceptions::PyValueError, prelude::*};
 use std::path;
 
 use imghash::{ImageHash, ImageHasher};
@@ -35,7 +35,7 @@ pub fn average_hash(img_path: &str, width: u32, height: u32) -> PyResult<Hash> {
         Ok(hash) => {
             return Ok(Hash { hash });
         }
-        Err(e) => return Err(PyRuntimeError::new_err(e.to_string())),
+        Err(e) => return Err(PyValueError::new_err(e.to_string())),
     }
 }
 
@@ -54,7 +54,7 @@ pub fn difference_hash(img_path: &str, width: u32, height: u32) -> PyResult<Hash
         Ok(hash) => {
             return Ok(Hash { hash });
         }
-        Err(e) => return Err(PyRuntimeError::new_err(e.to_string())),
+        Err(e) => return Err(PyValueError::new_err(e.to_string())),
     }
 }
 
@@ -73,7 +73,7 @@ pub fn perceptual_hash(img_path: &str, width: u32, height: u32) -> PyResult<Hash
         Ok(hash) => {
             return Ok(Hash { hash });
         }
-        Err(e) => return Err(PyRuntimeError::new_err(e.to_string())),
+        Err(e) => return Err(PyValueError::new_err(e.to_string())),
     }
 }
 

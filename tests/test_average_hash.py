@@ -21,7 +21,7 @@ def test_average_hash_with_txt_file(resource: ResourceFunc):
     img_path = resource("test.txt")
 
     # Act
-    with pytest.raises(RuntimeError) as e:
+    with pytest.raises(ValueError) as e:
         average_hash(img_path.absolute().as_posix())
 
     # Assert
