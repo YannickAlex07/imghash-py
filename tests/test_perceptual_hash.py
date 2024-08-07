@@ -1,6 +1,6 @@
 import pytest
 from conftest import ResourceFunc
-from imghashpy import perceptual_hash
+from imghash import perceptual_hash
 
 
 def test_perceptual_hash(resource: ResourceFunc):

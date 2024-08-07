@@ -1,23 +1,32 @@
-[tool.poetry]
+[project]
 name = "imghash"
 version = "0.1.0"
-description = "Image hashing powered by Rust"
+description = "Image hashing powered by Rust!"
 
-authors = ["Yannick Alexander <yannick@alexanderdev.io>"]
+requires-python = ">=3.9,<3.13"
 
-license = "MIT"
 readme = "README.md"
+authors = [{ name = "Yannick Alexander", email = "yannick@alexanderdev.io" }]
+license = { file = "LICENSE" }
 
-package-mode = false
+keywords = ["image", "hashing"]
+classifiers = [
+    "Intended Audience :: Developers",
+    # Python Versions
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.10,<=3.12"
+[project.urls]
+repository = "https://github.com/yannickalex07/imghash-py"
 
-[tool.poetry.group.dev.dependencies]
-maturin = "^1.5.1"
-pytest = "^8.2.0"
-ruff = "^0.4.2"
+[tool.rye]
+managed = true
+dev-dependencies = ["pip>=24.2", "pytest>=8.3.2", "ruff>=0.5.6", "maturin~=1.7"]
 
 [build-system]
-requires = ["maturin>=1.5,<=2.0"]
+requires = ["maturin>=1.2,<2.0"]
 build-backend = "maturin"

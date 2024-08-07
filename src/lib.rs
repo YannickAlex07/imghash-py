@@ -78,6 +78,7 @@ pub fn perceptual_hash(img_path: &str, width: u32, height: u32) -> PyResult<Hash
 }
 
 #[pymodule]
+#[pyo3(name = "imghash")]
 fn imghashpy(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Hash>()?;
 
