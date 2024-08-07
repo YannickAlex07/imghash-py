@@ -15,12 +15,7 @@ jobs:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v4
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -29,6 +24,9 @@ jobs:
 
       - name: Install the latest version of rye
         uses: eifinger/setup-rye@v4
+
+      - name: Pin Python Version
+        run: rye pin ${{ matrix.python-version }}
 
       - name: Install Dependencies
         run: rye sync
@@ -46,15 +44,13 @@ jobs:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v4
 
       - name: Install the latest version of rye
         uses: eifinger/setup-rye@v4
+
+      - name: Pin Python Version
+        run: rye pin ${{ matrix.python-version }}
   
       - name: Install Dependencies
         run: rye sync
@@ -69,15 +65,13 @@ jobs:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v4
 
       - name: Install the latest version of rye
         uses: eifinger/setup-rye@v4
+
+      - name: Pin Python Version
+        run: rye pin ${{ matrix.python-version }}
   
       - name: Install Dependencies
         run: rye sync
