@@ -12,7 +12,7 @@ readme = "README.md"
 
 [tool.rye]
 managed = true
-dev-dependencies = ["pip>=24.2", "pytest>=8.3.2", "ruff>=0.5.6"]
+dev-dependencies = ["pip>=24.2", "pytest>=8.3.2", "ruff>=0.5.6", "maturin~=1.7"]
 
 [build-system]
 requires = ["maturin>=1.2,<2.0"]

@@ -12,6 +12,7 @@
 -e file:.
 iniconfig==2.0.0
     # via pytest
+maturin==1.7.0
 packaging==24.1
     # via pytest
 pip==24.2
