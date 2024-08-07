@@ -1,6 +1,6 @@
 import pytest
 from conftest import ResourceFunc
-from imghashpy import difference_hash
+from imghash import difference_hash
 
 
 def test_difference_hash(resource: ResourceFunc):

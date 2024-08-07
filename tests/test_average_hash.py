@@ -1,6 +1,6 @@
 import pytest
 from conftest import ResourceFunc
-from imghashpy import average_hash
+from imghash import average_hash
 
 
 def test_average_hash(resource: ResourceFunc):

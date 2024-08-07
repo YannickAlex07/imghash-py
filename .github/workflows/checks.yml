@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v2
 
@@ -27,24 +27,24 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Setup Poetry
-        uses: Gr1N/setup-poetry@v8
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v4
 
       - name: Install Dependencies
-        run: poetry install
+        run: rye sync
 
       - name: Compile Bindings
-        run: poetry run maturin develop
+        run: rye run maturin develop
 
       - name: Run Tests
-        run: poetry run pytest tests/
+        run: rye run pytest tests/
 
   lint:
     name: Linting
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v2
 
@@ -53,21 +53,21 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Setup Poetry
-        uses: Gr1N/setup-poetry@v8
-
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v4
+  
       - name: Install Dependencies
-        run: poetry install
+        run: rye sync
 
       - name: Run Ruff Linter
-        run: poetry run ruff check -v
+        run: rye run ruff check -v
 
   format:
     name: Formatting
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v2
 
@@ -76,11 +76,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Setup Poetry
-        uses: Gr1N/setup-poetry@v8
-
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v4
+  
       - name: Install Dependencies
-        run: poetry install
+        run: rye sync
 
       - name: Run Ruff Linter
-        run: poetry run ruff format --check -v
+        run: rye run ruff format --check -v
