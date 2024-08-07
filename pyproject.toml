@@ -1,5 +1,5 @@
 [project]
-name = "imghash"
+name = "imghash-rs"
 version = "0.1.0"
 description = "Image hashing powered by Rust!"
 
