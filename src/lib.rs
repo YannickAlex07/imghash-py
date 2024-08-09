@@ -11,7 +11,7 @@ pub struct Hash {
 
 #[pymethods]
 impl Hash {
-    pub fn bits(&self) -> Vec<Vec<bool>> {
+    pub fn matrix(&self) -> Vec<Vec<bool>> {
         self.hash.matrix()
     }
 
