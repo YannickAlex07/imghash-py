@@ -12,11 +12,23 @@ pub struct Hash {
 #[pymethods]
 impl Hash {
     pub fn bits(&self) -> Vec<Vec<bool>> {
-        self.hash.matrix.clone()
+        self.hash.matrix()
     }
 
-    pub fn hex(&self) -> String {
+    pub fn encode(&self) -> String {
         self.hash.encode()
+    }
+
+    pub fn distance(&self, other: &Hash) -> PyResult<usize> {
+        let result = self.hash.distance(&other.hash);
+        match result {
+            Ok(d) => Ok(d),
+            Err(e) => Err(PyValueError::new_err(e.to_string())),
+        }
+    }
+
+    pub fn shape(&self) -> (usize, usize) {
+        self.hash.shape()
     }
 }
 
@@ -77,6 +89,18 @@ pub fn perceptual_hash(img_path: &str, width: u32, height: u32) -> PyResult<Hash
     }
 }
 
+// decoding
+#[pyfunction]
+#[pyo3(signature = (hash, width=8, height=8))]
+pub fn decode(hash: &str, width: usize, height: usize) -> PyResult<Hash> {
+    match ImageHash::decode(hash, width, height) {
+        Ok(hash) => {
+            return Ok(Hash { hash });
+        }
+        Err(e) => return Err(PyValueError::new_err(e.to_string())),
+    }
+}
+
 #[pymodule]
 #[pyo3(name = "imghash")]
 fn imghashpy(m: &Bound<'_, PyModule>) -> PyResult<()> {
@@ -85,6 +109,7 @@ fn imghashpy(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(average_hash, m)?)?;
     m.add_function(wrap_pyfunction!(difference_hash, m)?)?;
     m.add_function(wrap_pyfunction!(perceptual_hash, m)?)?;
+    m.add_function(wrap_pyfunction!(decode, m)?)?;
 
     Ok(())
 }

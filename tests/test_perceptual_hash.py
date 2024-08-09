@@ -12,8 +12,8 @@ def test_perceptual_hash(resource: ResourceFunc):
 
     # Assert
     assert hash
-    assert hash.hex() == "acdbe86135344e3a"
-    assert hash.bits()
+    assert hash.encode() == "acdbe86135344e3a"
+    assert hash.matrix()
 
 
 def test_perceptual_hash_with_txt_file(resource: ResourceFunc):
