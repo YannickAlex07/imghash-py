@@ -1,6 +1,6 @@
 [project]
 name = "imghash-rs"
-version = "0.2.0"
+version = "0.3.0"
 description = "Image hashing powered by Rust!"
 
 requires-python = ">=3.9,<3.13"

@@ -12,8 +12,8 @@ def test_average_hash(resource: ResourceFunc):
 
     # Assert
     assert hash
-    assert hash.hex() == "ffffff0e00000301"
-    assert hash.bits()
+    assert hash.encode() == "ffffff0e00000301"
+    assert hash.matrix()
 
 
 def test_average_hash_with_txt_file(resource: ResourceFunc):

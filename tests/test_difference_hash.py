@@ -12,8 +12,8 @@ def test_difference_hash(resource: ResourceFunc):
 
     # Assert
     assert hash
-    assert hash.hex() == "cc99717ed9ea0627"
-    assert hash.bits()
+    assert hash.encode() == "cc99717ed9ea0627"
+    assert hash.matrix()
 
 
 def test_difference_hash_with_txt_file(resource: ResourceFunc):
