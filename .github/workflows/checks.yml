@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
 
@@ -22,59 +22,62 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Install Rye
-        uses: eifinger/setup-rye@v4
-
-      - name: Pin Python Version
-        run: rye pin ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Install Dependencies
-        run: rye sync
+        run: uv sync
 
       - name: Compile Bindings
-        run: rye run maturin develop
+        run: uv run maturin develop
 
       - name: Run Tests
-        run: rye run pytest -v tests/
+        run: uv run pytest -v tests/
 
   lint:
     name: Linting
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Rye
         uses: eifinger/setup-rye@v4
 
-      - name: Pin Python Version
-        run: rye pin ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
   
       - name: Install Dependencies
-        run: rye sync
+        run: uv sync
 
       - name: Run Ruff Linter
-        run: rye run ruff check -v
+        run: uv run ruff check -v
 
   format:
     name: Formatting
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Rye
         uses: eifinger/setup-rye@v4
 
-      - name: Pin Python Version
-        run: rye pin ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
   
       - name: Install Dependencies
-        run: rye sync
+        run: uv sync
 
       - name: Run Ruff Linter
-        run: rye run ruff format --check -v
+        run: uv run ruff format --check -v
