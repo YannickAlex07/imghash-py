@@ -1,9 +1,9 @@
 [project]
 name = "imghash-rs"
-version = "0.3.0"
+version = "0.4.0"
 description = "Image hashing powered by Rust!"
 
-requires-python = ">=3.9,<3.13"
+requires-python = ">=3.9,<3.14"
 
 readme = "README.md"
 authors = [{ name = "Yannick Alexander", email = "yannick@alexanderdev.io" }]
@@ -18,15 +18,15 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 [project.urls]
 repository = "https://github.com/yannickalex07/imghash-py"
 
-[tool.rye]
-managed = true
-dev-dependencies = ["pip>=24.2", "pytest>=8.3.2", "ruff>=0.5.6", "maturin~=1.7"]
-
 [build-system]
 requires = ["maturin>=1.2,<2.0"]
 build-backend = "maturin"
+
+[dependency-groups]
+dev = ["maturin>=1.9.1", "pytest>=8.4.1", "ruff>=0.12.3"]

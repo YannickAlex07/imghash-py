@@ -12,6 +12,7 @@ pub struct Hash {
 #[pymethods]
 impl Hash {
     pub fn matrix(&self) -> Vec<Vec<bool>> {
+        #[allow(deprecated)]
         self.hash.matrix()
     }
 
@@ -92,7 +93,7 @@ pub fn perceptual_hash(img_path: &str, width: u32, height: u32) -> PyResult<Hash
 // decoding
 #[pyfunction]
 #[pyo3(signature = (hash, width=8, height=8))]
-pub fn decode(hash: &str, width: usize, height: usize) -> PyResult<Hash> {
+pub fn decode(hash: &str, width: u32, height: u32) -> PyResult<Hash> {
     match ImageHash::decode(hash, width, height) {
         Ok(hash) => {
             return Ok(Hash { hash });
